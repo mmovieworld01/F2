@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>403 Forbidden - KottaMovies</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #111827;
+            color: #fff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-image: radial-gradient(circle at 50% 50%, rgba(30, 41, 59, 0.8) 0%, rgba(15, 23, 42, 0.9) 100%);
+        }
+        
+        .error-container {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.9) 0%, rgba(15, 23, 42, 0.9) 100%);
+            border-radius: 16px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .error-code {
+            font-size: 8rem;
+            font-weight: 800;
+            background: linear-gradient(to right, #ef4444, #9333ea);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 2px 10px rgba(239, 68, 68, 0.3);
+        }
+        
+        .security-icon {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        .glow-button {
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(139, 92, 246, 0.5);
+        }
+        
+        .glow-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.8);
+        }
+        
+        .error-details {
+            border-left: 3px solid #9333ea;
+            background: rgba(30, 41, 59, 0.5);
+        }
+        
+        .marquee {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+            background: rgba(239, 68, 68, 0.2);
+            color: #fca5a5;
+            padding: 10px 0;
+        }
+        
+        .marquee span {
+            display: inline-block;
+            padding-left: 100%;
+            animation: marquee 15s linear infinite;
+        }
+        
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+        
+        .security-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(239, 68, 68, 0.2);
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #ef4444;
+            animation: rotate 10s linear infinite;
+        }
+        
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .laser-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            opacity: 0.05;
+            background-image: 
+                linear-gradient(to right, #ef4444 1px, transparent 1px),
+                linear-gradient(to bottom, #ef4444 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        
+        .access-denied-stamp {
+            position: absolute;
+            bottom: -50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            background: rgba(239, 68, 68, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: rotate(15deg);
+            border: 5px dashed #ef4444;
+            opacity: 0.7;
+        }
+        
+        .access-denied-stamp::before {
+            content: "ACCESS DENIED";
+            color: #ef4444;
+            font-weight: bold;
+            font-size: 1.5rem;
+            transform: rotate(-15deg);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+    <div class="error-container max-w-4xl w-full p-8 md:p-12 relative overflow-hidden">
+        <!-- Laser grid effect -->
+        <div class="laser-grid"></div>
+        
+        <!-- Security badge -->
+        <div class="security-badge">
+            <i class="fas fa-lock text-2xl text-red-500"></i>
+        </div>
+        
+        <!-- Access denied stamp -->
+        <div class="access-denied-stamp"></div>
+        
+        <!-- Error header -->
+        <div class="text-center mb-8 relative z-10">
+            <div class="error-code mb-4">403</div>
+            <h1 class="text-3xl md:text-4xl font-bold mb-2">Forbidden Access</h1>
+            <p class="text-gray-300 text-lg">You don't have permission to access this resource.</p>
+        </div>
+        
+        <!-- Security icon -->
+        <div class="flex justify-center mb-8 relative z-10">
+            <div class="security-icon text-6xl text-purple-500">
+                <i class="fas fa-user-lock"></i>
+            </div>
+        </div>
+        
+        <!-- Error details -->
+        <div class="error-details p-4 rounded-r mb-8 relative z-10">
+            <p class="font-semibold text-purple-400 mb-2"><i class="fas fa-shield-alt mr-2"></i>Security Alert</p>
+            <p class="text-gray-300 mb-4">
+                Our security system has detected unauthorized access to this resource. Possible reasons:
+            </p>
+            <ul class="list-disc list-inside text-gray-300 space-y-2 pl-4">
+                <li>You don't have the required permissions</li>
+                <li>Attempting to access restricted content</li>
+                <li>Invalid authentication credentials</li>
+                <li>IP address restriction in place</li>
+                <li>Content is only available to premium members</li>
+            </ul>
+        </div>
+        
+        <!-- Action buttons -->
+        <div class="flex flex-wrap justify-center gap-4 mt-8 relative z-10">
+            <a href="/" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-full glow-button flex items-center">
+                <i class="fas fa-home mr-2"></i> Go to Homepage
+            </a>
+            <a href="/" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-full flex items-center">
+                <i class="fas fa-sign-in-alt mr-2"></i> Login as Member
+            </a>
+            <a href="/" class="bg-yellow-600 hover:bg-yellow-700 text-white font-bold py-3 px-6 rounded-full flex items-center">
+                <i class="fas fa-crown mr-2"></i> Upgrade Account
+            </a>
+        </div>
+        
+        <!-- Technical details (can be toggled) -->
+        <div class="mt-8 text-center relative z-10">
+            <button id="toggleDetails" class="text-gray-400 hover:text-purple-400 text-sm flex items-center mx-auto">
+                <i class="fas fa-chevron-down mr-1"></i> Show Security Details
+            </button>
+            <div id="technicalDetails" class="hidden mt-4 bg-gray-800 p-4 rounded text-left text-sm text-gray-300">
+                <p><strong>Request URL:</strong> <span id="requestUrl" class="text-purple-400"></span></p>
+                <p class="mt-2"><strong>Error Type:</strong> HTTP 403 Forbidden</p>
+                <p class="mt-2"><strong>Timestamp:</strong> <span id="timestamp" class="text-purple-400"></span></p>
+                <p class="mt-2"><strong>Client IP:</strong> <span id="clientIp">[hidden]</span></p>
+                <p class="mt-2"><strong>Security Level:</strong> <span class="text-red-400">High</span></p>
+                <p class="mt-2"><i class="fas fa-exclamation-triangle text-yellow-400 mr-2"></i>This incident has been logged</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Marquee with warning message -->
+    <div class="marquee">
+        <span>
+            SECURITY ALERT: Unauthorized access attempt detected • This incident has been logged • 
+            Repeated attempts may result in IP ban • For assistance, contact security@kottamovies.com •
+            KottaMovies Security System • 403 Forbidden •
+        </span>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set dynamic data
+            document.getElementById('requestUrl').textContent = window.location.href;
+            document.getElementById('timestamp').textContent = new Date().toLocaleString();
+            
+            // Toggle technical details
+            const toggleBtn = document.getElementById('toggleDetails');
+            const detailsDiv = document.getElementById('technicalDetails');
+            
+            toggleBtn.addEventListener('click', function() {
+                detailsDiv.classList.toggle('hidden');
+                
+                // Change icon and text
+                const icon = this.querySelector('i');
+                if (detailsDiv.classList.contains('hidden')) {
+                    icon.classList.remove('fa-chevron-up');
+                    icon.classList.add('fa-chevron-down');
+                    this.innerHTML = '<i class="fas fa-chevron-down mr-1"></i> Show Security Details';
+                } else {
+                    icon.classList.remove('fa-chevron-down');
+                    icon.classList.add('fa-chevron-up');
+                    this.innerHTML = '<i class="fas fa-chevron-up mr-1"></i> Hide Security Details';
+                }
+            });
+            
+            // Try to get client IP (this would normally come from server-side)
+            fetch('https://api.ipify.org?format=json')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('clientIp').textContent = data.ip;
+                })
+                .catch(() => {
+                    document.getElementById('clientIp').textContent = 'Not available';
+                });
+            
+            // Add dramatic effect when clicking buttons
+            const buttons = document.querySelectorAll('button, a');
+            buttons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    if(this.getAttribute('href') === '#') {
+                        e.preventDefault();
+                    }
+                    // Create a ripple effect
+                    const ripple = document.createElement('span');
+                    ripple.classList.add('ripple-effect');
+                    this.appendChild(ripple);
+                    
+                    // Remove ripple after animation
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 600);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
